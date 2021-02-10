@@ -6,6 +6,7 @@ fixar.js
 
 ![GitHub file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/fixar.min.js?label=minzipped%20size)
 ![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
+
 ![GitHub Repo stars](https://img.shields.io/github/stars/BraidenPsiuk/fixar.js?color=yellow)
 
 #### JavaScript rendering tools library. Designed for use with Three.js. ####
