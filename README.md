@@ -2,7 +2,7 @@ fixar.js
 ========
 
 ![GitHub](https://img.shields.io/badge/Supported%3A-Three.js-brightgreen)
-![GitHub](https://img.shields.io/badge/Currently %20Unsupported%3A-Pixi.js%2C%20Several%20other%20libraries-red)
+![GitHub](https://img.shields.io/badge/Currently%20Unsupported%3A-Pixi.js%2C%20Several%20other%20libraries-red)
 
 ![GitHub file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/fixar.min.js?label=minzipped%20size)
 ![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
