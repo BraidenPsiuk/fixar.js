@@ -69,15 +69,11 @@ If everything went well, you should see [this](https://jsfiddle.net/zdjankqw/).
 
 ### Cloning this repository ###
 
-Cloning the repo with all its history results in a ~2 GB download. If you don't need the whole history you can use the `depth` parameter to significantly reduce download size.
+Cloning the repo with all its history might take a while. If you don't need the whole history you can use the `depth` parameter to significantly reduce download size.
 
 ```sh
-git clone --depth=1 https://github.com/mrdoob/three.js.git
+git clone --depth=1 https://github.com/BraidenPsiuk/fixar.js.git
 ```
-
-### Change log ###
-
-[Releases](https://github.com/mrdoob/three.js/releases)
 
 
 [npm]: https://img.shields.io/npm/v/three
