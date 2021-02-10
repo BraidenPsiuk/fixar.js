@@ -7,9 +7,15 @@ fixar.js
 
 #### JavaScript rendering tools library. Designed for use with Three.js. ####
 
-The aim of the project is to create an easy to use, lightweight, 3D library with a default WebGL renderer. The library also provides Canvas 2D, SVG and CSS3D renderers in the examples.
+The aim of the project is to create an easy to use, lightweight JavaScript library that pairs nicely with other libraries that render to a canvas, such as Mr. Doob's Three.js.
 
-Check out some [examples](https://fixarjs.org/examples/), or get started with the [documentation](https://fixarjs.org/docs/)!
+I've always dreamed of making 3D visualizations and games in JavaScript. Three.js provides the means to do these things in a graspable way, but I've found that browser window resizes can be difficult to develop around. Users can resize their window at any time, which can introduce problems if you intended for your scene to be viewed at a specific aspect ratio.
+
+That's where this library comes in! By automatically setting up letterboxing/pillarboxing, you no longer have to worry about resizes, nor do you need to call any kind of update() functions!
+This library also includes a few other neat features:
+- Change the letter/pillarbox color
+- Adjust resolution
+- Change AR on the fly
 
 ### Usage ###
 
