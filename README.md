@@ -9,8 +9,7 @@ fixar.js
 
 The aim of the project is to create an easy to use, lightweight, 3D library with a default WebGL renderer. The library also provides Canvas 2D, SVG and CSS3D renderers in the examples.
 
-Check out some [examples](https://fixarjs.org/examples/)
-Or, jump in and view the [documentation](https://fixarjs.org/docs/)
+Check out some [examples](https://fixarjs.org/examples/), or get started with the [documentation](https://fixarjs.org/docs/)!
 
 ### Usage ###
 
