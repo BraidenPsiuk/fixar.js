@@ -7,6 +7,7 @@ JavaScript rendering tools library. Designed for use with Three.js.
 fixar.js
 ========
 
+![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
 [![Build Size][build-size]][build-size-url]
 
 #### JavaScript rendering tools library. Designed for use with Three.js. ####
