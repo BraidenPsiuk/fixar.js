@@ -8,7 +8,7 @@ fixar.js
 ========
 
 ![GitHub](https://img.shields.io/badge/Supported%3A-Three.js%2C%20Pixi.js-brightgreen)
-![GitHub file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/fixar.min.js)
+![GitHub file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/fixar.min.js?label=minzipped%20size)
 ![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
 
 #### JavaScript rendering tools library. Designed for use with Three.js. ####
