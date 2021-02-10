@@ -11,6 +11,8 @@ fixar.js
 
 #### JavaScript rendering tools library. Designed for use with Three.js. ####
 
+FixAR Fixes your Aspect Ratio.
+
 The aim of the project is to create an easy to use, lightweight JavaScript library that pairs nicely with other libraries that render to a canvas, such as Mr. Doob's Three.js.
 
 I've always dreamed of making 3D visualizations and games in JavaScript. Three.js provides the means to do these things in a graspable way, but I've found that browser window resizes can be difficult to develop around. Users can resize their window at any time, which can introduce problems if you intended for your scene to be viewed at a specific aspect ratio.
