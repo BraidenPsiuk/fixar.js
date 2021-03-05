@@ -1,7 +1,7 @@
 fixar.js
 ========
 
-![](fixar-logo-hires.png)
+![](img/fixar-logo-hires.png)
 
 ![GitHub](https://img.shields.io/badge/Supported%3A-Three.js-brightgreen)
 ![GitHub](https://img.shields.io/badge/Currently%20Unsupported%3A-Pixi.js%2C%20Several%20other%20libraries-red)
