@@ -1,0 +1,38 @@
+{
+  "name": "fixar",
+  "version": "1.0.0",
+  "description": "JavaScript rendering tools library. Designed for use with Three.js.",
+  "main": "fixar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BraidenPsiuk/fixar.js.git"
+  },
+  "keywords": [
+    "three",
+    "three.js",
+    "fixar",
+    "fixar.js",
+    "javascript",
+    "3d",
+    "virtual-reality",
+    "augmented-reality",
+    "webgl",
+    "webgl2",
+    "webxr",
+    "canvas",
+    "svg",
+    "html5",
+    "aspect",
+    "ratio",
+    "aspect-ratio"
+  ],
+  "author": "Braiden S. Psiuk (https://braiden.net/)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BraidenPsiuk/fixar.js/issues"
+  },
+  "homepage": "https://github.com/BraidenPsiuk/fixar.js#readme"
+}
