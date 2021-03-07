@@ -27,7 +27,14 @@ This library also includes a few other neat features:
 
 ### Usage ###
 
-This code creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a `WebGL` renderer for the scene and camera, and it adds that viewport to the `document.body` element. Finally, it animates the cube within the scene for the camera.
+Explain what the code below does
+
+We can have 2 import methods:
+- CDN (for websites)
+- Local (for Electron apps)
+```sh
+npm i fixar
+```
 
 ```javascript
 import * as THREE from './js/three.module.js';
@@ -66,23 +73,3 @@ function animation( time ) {
 
 }
 ```
-
-If everything went well, you should see [this](https://jsfiddle.net/zdjankqw/).
-
-### Cloning this repository ###
-
-Cloning the repo with all its history might take a while. If you don't need the whole history you can use the `depth` parameter to significantly reduce download size.
-
-```sh
-git clone --depth=1 https://github.com/BraidenPsiuk/fixar.js.git
-```
-
-
-[npm]: https://img.shields.io/npm/v/three
-[npm-url]: https://www.npmjs.com/package/three
-[build-size]: https://badgen.net/bundlephobia/minzip/three
-[build-size-url]: https://bundlephobia.com/result?p=three
-[npm-downloads]: https://img.shields.io/npm/dw/three
-[npmtrends-url]: https://www.npmtrends.com/three
-[lgtm]: https://img.shields.io/lgtm/alerts/github/mrdoob/three.js
-[lgtm-url]: https://lgtm.com/projects/g/mrdoob/three.js/

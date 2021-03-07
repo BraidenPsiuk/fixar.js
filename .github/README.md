@@ -1,4 +1,4 @@
-fixar.js (GITHUB README)
+fixar.js (GITHUB README, the npm one is more detailed right now)
 ========
 
 ![](/img/fixar-logo-hires.png)
