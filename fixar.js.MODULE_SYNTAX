@@ -1,9 +1,11 @@
+// exports.test = ()=>{console.log("Module was loaded properly");};
+
 // ---------------------------------------------------[ CONFIGURE HERE ]---------------------------------------------------
 // -[ GLOBALLY ACCESSABLE FLAGS ]-
 let FLAG_needToResize = true; // Set to true so that the resize() function runs once, and then again only when needed
 // ------------------------------------------------------------------------------------------------------------------------
 
-class Viewport {
+export default class Fixar {
   constructor({
     _ar = 16/9,
     _mode = `THREE`,
@@ -85,7 +87,3 @@ class Viewport {
 // console.log(FIXAR.DEBUG_simplifiedAr);
 // FIXAR.ar = 2.35;
 // console.log(FIXAR.DEBUG_simplifiedAr);
-
-export {
-    Viewport
-};
