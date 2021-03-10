@@ -1,9 +1,5 @@
 import * as THREE from "https://unpkg.com/three@latest/build/three.module.js";
-import * as FIXAR from "../fixar.js"; //FIXAR.usingModes([
-//     console.assert(THREE, "no")
-// ]);
-
-
+import * as FIXAR from "../../fixar.js";
 
 const viewport = new FIXAR.Viewport({
     wrapperColor: `#FF0000`,
