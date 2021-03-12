@@ -1,6 +1,6 @@
 # fixar.js (NPM)
 
-> **FixAR** **Fix**es your **A**spect **R**atio.
+**FixAR** **Fix**es your **A**spect **R**atio.
 
 ![](/img/fixar-logo-hires.png)
 

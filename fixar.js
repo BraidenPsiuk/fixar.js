@@ -19,17 +19,20 @@ const FIXAR_STYLES = `
     }
 `;
 
+let __BETA_oneViewportCreated=false;
+
 class Viewport {
     constructor({
         ar = 16/9,
         mode = `THREE`,
         quality = 1,
-        wrapperColor = `#FF0000`,
+        wrapperColor = `#000000`,
         CAMERA_FOV = 75, // We'll use Three.js's default FOV from their documentation
         CAMERA_NCP = 0.1,
         CAMERA_FCP = 100 // Three.js normally uses 1000, but that's a little overkill
     }={}) {
         this._FLAG_needToResize=true;
+        this._FLAG_hasBeenInitialized=false;
 
         // Maybe use https://www.npmjs.com/package/uuid to create a uuid to give each viewport an ID
 
@@ -40,6 +43,8 @@ class Viewport {
         this._CAMERA_FOV=CAMERA_FOV;
         this._CAMERA_NCP=CAMERA_NCP;
         this._CAMERA_FCP=CAMERA_FCP;
+
+        if (!__BETA_oneViewportCreated) {__BETA_oneViewportCreated=true;} else {console.error("FIXAR Error: ALREADY USED ONE VIEWPORT");}
     }
 
 
@@ -61,6 +66,9 @@ class Viewport {
     get mode() { return this._mode; }
     // set mode(mode) { console.error("FIXAR Error: You cannot modify mode after it has been initialized"); }
 
+    get needToResize() { return this._FLAG_needToResize; }
+    set needToResize(needToResize) { this._FLAG_needToResize = needToResize; }
+
     get wrapper() {
         if (this._wrapper) {
             return this._wrapper
@@ -76,9 +84,13 @@ class Viewport {
     }
 
     get wrapperColor() { return this._wrapperColor; }
-    set wrapperColor(color) { this._wrapperColor = color; }
+    set wrapperColor(color) {
+        this._wrapperColor = color;
+        this._wrapper.style.backgroundColor = this._wrapperColor;
+    }
     setWrapperColor = (color)=> {
         this._wrapperColor = color;
+        this._wrapper.style.backgroundColor = this._wrapperColor;
     }
 
 
@@ -93,35 +105,41 @@ class Viewport {
 
         this._wrapper = document.createElement(`div`);
         this._wrapper.id = `fixar-wrapper`;
+        this._wrapper.style.backgroundColor = this._wrapperColor;
 
         document.body.appendChild(this._container);
         document.getElementById(`fixar-container`).appendChild(this._wrapper);
-
-
-        this._wrapper.style.backgroundColor = "#FF0000" // THIS ONE NEEDS TO BE FIXED IN AN UPDATE!!!!
     }
 
-    // Maybe combine these two functions? Or find another way around this...
-    registerRenderer = renderer=> {
-        this._registeredRenderer = renderer; // Create a flag to see if renderer has been registered yet, make this accessable via a getter, etc.
-        this.wrapper.appendChild(renderer.domElement);
+    autoResize = ()=> { // TURN AUTORESIZE INTO AN OPTION WHEN INITIALIZING THE VIEWPORT! MAKE IT CONFIGURABLE!
+        window.addEventListener('resize', this.resize);
     }
-    registerCamera = camera=> {
-        this._registeredCamera = camera; // Create a flag to see if camera has been registered yet, make this accessable via a getter, etc.
+
+    registerComponents = (mode, camera, renderer)=> {
+        switch (mode) {
+            case "THREE":
+                this._registeredRenderer = renderer; // Create a flag to see if renderer has been registered yet, make this accessable via a getter, etc.
+                this.wrapper.appendChild(renderer.domElement);
+                this._registeredCamera = camera; // Create a flag to see if camera has been registered yet, make this accessable via a getter, etc.
+                break;
+            default:
+                console.error("FIXAR Error: Did not recognize understand the mode you supplied to FIXAR.registerComponents().");
+                break;
+        }
     }
 
     resize = ()=> {
-        const width = this._wrapper.children[0].width, height = this._wrapper.children[0].height;
-        let newWidth = this._wrapper.clientWidth, newHeight = this._wrapper.clientHeight;
-        newWidth = (newWidth>newHeight*this._ar) ? newHeight*this._ar : newWidth;
-        newHeight = (newWidth<=newHeight*this._ar) ? newWidth/this._ar : newHeight;
-        this._registeredRenderer.setPixelRatio( window.devicePixelRatio/this._quality );
-        if (width != newWidth || height != newHeight) {
-          this._registeredCamera.aspect = newWidth/newHeight;
-          this._registeredCamera.updateProjectionMatrix();
-          this._registeredRenderer.setSize(newWidth, newHeight);
-        }
-        this._FLAG_needToResize = false;
+            console.log("run");
+            const width = this._wrapper.children[0].width, height = this._wrapper.children[0].height;
+            let newWidth = this._wrapper.clientWidth, newHeight = this._wrapper.clientHeight;
+            newWidth = (newWidth>newHeight*this._ar) ? newHeight*this._ar : newWidth;
+            newHeight = (newWidth<=newHeight*this._ar) ? newWidth/this._ar : newHeight;
+            this._registeredRenderer.setPixelRatio( window.devicePixelRatio/this._quality );
+            if (width != newWidth || height != newHeight) {
+            this._registeredCamera.aspect = newWidth/newHeight;
+            this._registeredCamera.updateProjectionMatrix();
+            this._registeredRenderer.setSize(newWidth, newHeight);
+            }
       }
   
   // Change the aspect ratio on the fly. Use it like this: setAspectRatio(4,3);
@@ -194,7 +212,8 @@ class Viewport {
 export {
     // modes,
     // usingModes,
-    Viewport
+    Viewport,
+    FIXAR_STYLES
 };
 
 
