@@ -113,6 +113,7 @@ class Viewport {
 
     autoResize = ()=> { // TURN AUTORESIZE INTO AN OPTION WHEN INITIALIZING THE VIEWPORT! MAKE IT CONFIGURABLE!
         window.addEventListener('resize', this.resize);
+        // Will need to add a small timeout to trigger one last resize after a few ms for when devtools is not open, for electron apps
     }
 
     registerComponents = (mode, camera, renderer)=> {
@@ -129,7 +130,7 @@ class Viewport {
     }
 
     resize = ()=> {
-            console.log("run");
+            // console.log("run");
             const width = this._wrapper.children[0].width, height = this._wrapper.children[0].height;
             let newWidth = this._wrapper.clientWidth, newHeight = this._wrapper.clientHeight;
             newWidth = (newWidth>newHeight*this._ar) ? newHeight*this._ar : newWidth;
