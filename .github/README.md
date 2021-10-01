@@ -25,7 +25,7 @@ ___
 
 Take full control over how your 2D/3D scene is viewed! **FIXAR** automatically resizes your scene to make it as large as possible while maintaining an aspect ratio **YOU** define (and can change at any time). It does this by creating a letterboxing/pillarboxing effect around your canvas, which avoids stretching or cropping (which can look ugly or cause a loss of detail, respectively).
 
-**FIXAR** is designed to be BYOL (Bring Your Own Library)-compliant. That's a term I just made up. Golly, [aren't acronyms just the best](https://gist.github.com/anonymous/ca9721fbf27e77667abb)? Anyway, whatever library you want to use for the actual rendering should work well when combined with **FIXAR**, but only after I add support for each additional library. Currently, THREE, Three.js, three.js (whatever you want to call it...) is the only supported library, but I'm not making it a dependancy because I don't want THREE to be the *only* option.
+**FIXAR** is designed to be BYOL (Bring Your Own Library)-compliant. That's a term I just made up. [Aren't acronyms just the best?](https://gist.github.com/anonymous/ca9721fbf27e77667abb) Anyway, whatever library you want to use for the actual rendering should work well when combined with **FIXAR**, but only after I add support for each additional library. Currently, THREE, Three.js, three.js (whatever you want to call it...) is the only supported library, but I'm not making it a dependancy because I don't want THREE to be the *only* option.
 
 ___
 
@@ -33,7 +33,7 @@ The aim of the project is to create an easy to use, lightweight JavaScript libra
 
 <!-- I've always dreamed of making 3D visualizations and games in JavaScript. Three.js provides the means to do these things in a graspable way, but I've found that browser window resizes can be difficult to develop around. Users can resize their window at any time, which can introduce problems if you intended for your scene to be viewed at a specific aspect ratio. -->
 
-By automatically setting up letterboxing/pillarboxing, you no longer have to worry about handling window resizes or users getting a peak at things in your scene they're not intended to see.
+By automatically setting up letterboxing/pillarboxing, you no longer have to worry about handling window resizes or users getting a peek at things in your scene they're not intended to see by resizing the window.
 
 
 <!-- ## Usage
