@@ -1,10 +1,15 @@
-## Welcome to GitHub Pages
+# [ THIS PAGE IS STILL UNDER CONSTRUCTION ]
 
-You can use the [editor on GitHub](https://github.com/BraidenPsiuk/fixar.js/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## What is FIXAR?
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+FIXAR helps you have full control over how your 2D/3D scene is viewed. It automatically resizes your scene to make it as large as possible while maintaining an aspect ratio you define (and can change at any time). It does this by creating a letterboxing/pillarboxing effect, which avoids stretching or cropping (which can look ugly or cause a loss of detail, respectively).
 
-### Markdown
+### Usage
+
+```javascript
+import * as THREE from "https://unpkg.com/three@latest/build/three.module.js";
+import * as FIXAR from "https://unpkg.com/fixar@latest/fixar.js"; // TODO: add fixar.min.js
+```
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
