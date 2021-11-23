@@ -1,22 +1,33 @@
 import * as FIXAR from "../../src/fixar.mjs";
 
 import * as THREE from "https://cdn.skypack.dev/three@latest";
-import * as PIXI from 'https://cdn.skypack.dev/pixi.js'
+import * as PIXI from 'https://cdn.skypack.dev/pixi.js';
 import _ from "https://cdn.skypack.dev/lodash@latest"; // Unsupported library for testing
 import * as BABYLON_DEFAULT from 'https://cdn.skypack.dev/babylonjs@latest';
 const BABYLON = BABYLON_DEFAULT.default; // Not sure how to avoid doing this...
 
-
+// console.log(PIXI);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true}); // Define our renderer with a clear background and antialiasing enabled
 
-FIXAR.use(THREE); // Can be called multiple times, with as many parameters as you want.
+FIXAR.use(THREE, PIXI); // Can be called multiple times, with as many parameters as you want.
 const view1 = new FIXAR.Viewport({
-    renderingLibrary: "THREE"
+    ar: 4/3,
+    renderingLibrary: "THREE",
+    quality: 1,
+    wrapperColor: `#000000`,
+    camera: camera,
+    renderer: renderer
 });
-view1.registerComponents(2,2,2);
+
+// view1.registerComponents( camera, renderer );
+// Or,
+// view1.camera = camera;
+// view1.renderer = renderer;
+
+// view1.registerComponents(new THREE.MeshBasicMaterial());
 
 
 

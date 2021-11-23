@@ -2,9 +2,18 @@
   "name": "fixar",
   "version": "0.2.0",
   "description": "JavaScript rendering tools library. Designed for use with Three.js.",
-  "main": "fixar.js",
+  "module": "./build/fixar.es.js",
+  "main": "./build/fixar.umd.js",
+  "files": ["build"],
+  "exports": {
+    ".": {
+      "import": "./build/fixar.es.js",
+      "require": "./build/fixar.umd.js"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -34,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/BraidenPsiuk/fixar.js/issues"
   },
-  "homepage": "https://github.com/BraidenPsiuk/fixar.js#readme"
+  "homepage": "https://github.com/BraidenPsiuk/fixar.js#readme",
+  "devDependencies": {
+    "vite": "^2.6.14"
+  }
 }

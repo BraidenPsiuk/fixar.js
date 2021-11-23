@@ -1,27 +1,48 @@
 const DEBUG_SHOW_SUCCESS_MESSAGES = true;
 
-const FIXAR_STYLES = `
-    div.fixar-wrapper {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #000;
-    }
+// const FIXAR_STYLES_CSS = `
+//     div.fixar-wrapper {
+//         position: absolute;
+//         width: 100%;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         background-color: #000;
+//     }
 
-    canvas.fixar-viewport {
-        display: block;
-        background-color: #FFF;
+//     canvas.fixar-viewport {
+//         display: block;
+//         background-color: #FFF;
+//     }
+// `;
+
+const FIXAR_STYLES = {
+    "wrapper": {
+        "position": "absolute",
+        "width": "100%",
+        "height": "100%",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "backgroundColor": "#000"
+    },
+    "viewport": {
+        "display": "block",
+        "backgroundColor": "#FFF"
     }
-`;
+};
 
 const LOADED_LIBS = {};
 const LIB_IDENTIFIERS = { // Supply a short name for each supported graphics library along with a unique class from that library used to identify it
     "THREE": "Object3D", // Explaination: "Object3D" is one of the most common, deeply-rooted classes in Three.js, it will likely never be removed from the API
-    "BABYLON": "PhysicsImpostor", // Explaination: Seemed pretty sus, not gonna lie
-    "PIXI": "ProjectionSystem" // Explaination: idk it just works for now ¯\_(ツ)_/¯
+    "PIXI": "ProjectionSystem", // Explaination: idk it just works for now ¯\_(ツ)_/¯ - HEY MAYBE USE APPLICATION! seems like a core part of their docs
+    // What about Phaser CE?
+    "PHASER3": "Game", // They've really been pushing ES6 and NPM within the last few years but Skypack seems broken atm? :( Explaination: "Game" is THE most common class in Phaser3, it will likely never be removed from the API
+    "BABYLON": "PhysicsImpostor" // Explaination: Seemed pretty sus, not gonna lie
+    
+    
+    // ...
 };
 export const use = (...libs) => {
     for (const lib of libs) {
@@ -45,10 +66,12 @@ export const use = (...libs) => {
 
 export class Viewport {
     constructor({
-        ar = 16 / 9,
+        ar = 16/9,
         renderingLibrary = "THREE",
         quality = 1,
-        wrapperColor = `#000000`
+        wrapperColor = `#000000`,
+        camera = null,
+        renderer = null
     }={}) {
         renderingLibrary = renderingLibrary.trim().toUpperCase(); // trim/uppercase the rendering library string in case the user passed it in slightly incorrectly
 
@@ -64,19 +87,58 @@ export class Viewport {
         this._NEED_TO_RESIZE = true;
         this._INITIALIZED = false;
 
+        this._viewport = null; // TODO
+        this._wrapper = document.createElement("div");
+        for (const [key, value] of Object.entries(FIXAR_STYLES.wrapper)) {
+            this._wrapper.style[key] = value;
+        }
+
         this._ar = ar;
         this._renderingLibrary = renderingLibrary;
         this._quality = quality;
         this._wrapperColor = wrapperColor;
+        this.registerComponents(camera, renderer);
     }
 
-    // just ONE way to register these. Also have individual setters for each thing.
     registerComponents = (camera, renderer)=>{
+        this.camera = camera;
+        this.renderer = renderer;
+    }
+    
+    set camera(camera) {
+        if (camera === null) {
+            this._camera = null;
+        } else {
+            switch (this._renderingLibrary) {
+                case "THREE":
+                    if (camera.constructor.name === LOADED_LIBS.THREE.PerspectiveCamera.name || camera.constructor.name === LOADED_LIBS.THREE.OrthographicCamera.name) {
+                        this._camera = camera;
+                    } else {
+                        throw new Error(`Please provide ${LOADED_LIBS.THREE.PerspectiveCamera.name} or ${LOADED_LIBS.THREE.OrthographicCamera.name}, you provided ${camera.constructor.name}`);
+                    }
+                    break;
+            }
+        }
+    } get camera() {
+        return this._camera;
+    }
+
+    set renderer(renderer) {
+        if (renderer === null) {
+            this._renderer = null;
+        } else {
         switch (this._renderingLibrary) {
             case "THREE":
-                console.warn("THREE path taken...")
+                if (renderer.constructor.name === LOADED_LIBS.THREE.WebGLRenderer.name) {
+                    this._renderer = renderer;
+                } else {
+                    throw new Error(`Please provide ${LOADED_LIBS.THREE.WebGLRenderer.name}, you provided ${renderer.constructor.name}`);
+                }
                 break;
         }
+    }
+    } get renderer() {
+        return this._renderer;
     }
 };
 
