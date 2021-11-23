@@ -34,7 +34,6 @@ const use = (...libs) => {
         supported = true;
         if (!LOADED_LIBS[key]) {
           LOADED_LIBS[key] = lib;
-          console.log(`%cSuccessfully loaded the ${key} library!`, "color:green");
         } else {
           console.warn("Library already provided, it has been ignored");
         }
@@ -60,9 +59,9 @@ class Viewport {
     renderingLibrary = renderingLibrary.trim().toUpperCase();
     if (!Object.keys(LIB_IDENTIFIERS).includes(renderingLibrary))
       throw new Error(`Rendering library "${renderingLibrary}" is not supported`);
-    if (Object.keys(LOADED_LIBS).includes(renderingLibrary)) {
-      console.log("%cSuccessfully initialized Viewport!", "color:green");
-    } else {
+    if (Object.keys(LOADED_LIBS).includes(renderingLibrary))
+      ;
+    else {
       throw new Error(`The "${renderingLibrary}" rendering library hasn't been provided to FIXAR. You must first call FIXAR.use(${renderingLibrary}) before attempting to create a viewport using that rendering library.`);
     }
     this._NEED_TO_RESIZE = true;

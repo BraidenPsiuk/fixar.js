@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example: Basic</title>
     <style>
         body {
             margin: 0;
         }
+
+        #container-div {
+            background-color: lightgrey;
+            border: 0.5rem dashed darkslategrey;
+            width: 64rem;
+            height: 36rem;
+            /* Fairly common 16:9 aspect ratio */
+        }
     </style>
-    <title>FIXAR Test</title>
 </head>
+
 <body>
-    <script type="module" src="main.js"></script>
+    <h1>Basic Example</h1>
+    <p>Below, we have a div with an id of "container". It has a fixed height and width.</p>
+    <p>To get started, we'll create a single FIXAR Viewport, and append it to the "container" div.</p>
+
+    <div id="container-div"></div>
+
+    <script type="module">
+        import * as FIXAR from "../../build/fixar.es.js";
+        import * as THREE from "https://cdn.skypack.dev/three";
+
+        FIXAR.use(THREE); // Give FIXAR access to the Three.js library
+        const containerDiv = document.getElementById("container-div"); // Where we want to run our scene
+
+        // Set up a simple Three.js scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+
+        const viewport1 = new FIXAR.Viewport({ renderingLibrary: "THREE" });
+        viewport1.registerComponents(camera, renderer);
+    </script>
 </body>
+
 </html>

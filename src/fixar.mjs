@@ -1,4 +1,4 @@
-const DEBUG_SHOW_SUCCESS_MESSAGES = true;
+const DEBUG_SHOW_SUCCESS_MESSAGES = false;
 
 // const FIXAR_STYLES_CSS = `
 //     div.fixar-wrapper {
