@@ -8,7 +8,8 @@
 ![GitHub](https://img.shields.io/badge/Currently%20Unsupported:-Babylon.js,%20PixiJS,%20Phaser%203/4,%20and%20several%20other%20libraries-red)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/BraidenPsiuk/fixar.js?color=yellow)
-![GitHub file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/fixar.min.js?label=minzipped%20size)
+![ES file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/build/fixar.es.js?label=es%20size)
+![UMD file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/build/fixar.umd.js?label=umd%20size)
 ![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
 
 ## NOTE: FIXAR IS STILL IN THE VERY EARLY STAGES OF DEVELOPMENT. It is currently in version 0.x.x (NPM) and is unusable in its current state.
