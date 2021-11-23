@@ -1,2 +1,0 @@
-PIXI.AbstractRenderer.view - "The canvas element that everything is drawn to."
-PIXI.Application.view - "Reference to the renderer's canvas element. READONLY!"

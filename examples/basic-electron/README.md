@@ -1,1 +1,0 @@
-Please check out [this](https://github.com/BraidenPsiuk/fixar.js-three.js-electron-example) repository for an example.
