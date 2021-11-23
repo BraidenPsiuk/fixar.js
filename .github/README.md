@@ -26,7 +26,7 @@ ___
 
 Take full control over how your 2D/3D scene is viewed! **FIXAR** automatically resizes your scene to make it as large as possible while maintaining an aspect ratio **YOU** define (and can change at any time). It does this by creating a letterboxing/pillarboxing effect around your canvas, which avoids stretching or cropping (which can look ugly or cause a loss of detail, respectively).
 
-**FIXAR** is designed to be BYOL (Bring Your Own Library)-compliant. That's a term I just made up. [Aren't acronyms just the best?](https://gist.github.com/anonymous/ca9721fbf27e77667abb) Anyway, whatever library you want to use for the actual rendering should work well when combined with **FIXAR**, but only after I add support for each additional library. Currently, THREE, Three.js, three.js (whatever you want to call it...) is the only supported library, but I'm not making it a dependancy because I don't want THREE to be the *only* option.
+**FIXAR** is designed to be BYOL (Bring Your Own Library)-compliant. That's a term I just made up. [Aren't acronyms just the best?](https://gist.github.com/anonymous/ca9721fbf27e77667abb) Anyway, whatever library you want to use for the actual rendering should work well when combined with **FIXAR**, but only after I add support for each additional library. Currently, THREE, Three.js, three.js (whatever you want to call it...) is the only supported library, but I'm not making it a dependency because I don't want THREE to be the *only* option.
 
 ___
 

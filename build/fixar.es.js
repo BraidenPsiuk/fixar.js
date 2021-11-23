@@ -11,10 +11,9 @@ const FIXAR_STYLES = {
     "height": "100%",
     "display": "flex",
     "alignItems": "center",
-    "justifyContent": "center",
-    "backgroundColor": "#000"
+    "justifyContent": "center"
   },
-  "viewport": {
+  "container": {
     "display": "block",
     "backgroundColor": "#FFF"
   }
@@ -34,6 +33,7 @@ const use = (...libs) => {
         supported = true;
         if (!LOADED_LIBS[key]) {
           LOADED_LIBS[key] = lib;
+          console.log(`%cSuccessfully loaded the ${key} library!`, "color:green");
         } else {
           console.warn("Library already provided, it has been ignored");
         }
@@ -59,23 +59,30 @@ class Viewport {
     renderingLibrary = renderingLibrary.trim().toUpperCase();
     if (!Object.keys(LIB_IDENTIFIERS).includes(renderingLibrary))
       throw new Error(`Rendering library "${renderingLibrary}" is not supported`);
-    if (Object.keys(LOADED_LIBS).includes(renderingLibrary))
-      ;
-    else {
+    if (Object.keys(LOADED_LIBS).includes(renderingLibrary)) {
+      console.log("%cSuccessfully initialized Viewport!", "color:green");
+    } else {
       throw new Error(`The "${renderingLibrary}" rendering library hasn't been provided to FIXAR. You must first call FIXAR.use(${renderingLibrary}) before attempting to create a viewport using that rendering library.`);
     }
     this._NEED_TO_RESIZE = true;
     this._INITIALIZED = false;
-    this._viewport = null;
-    this._wrapper = document.createElement("div");
-    for (const [key, value] of Object.entries(FIXAR_STYLES.wrapper)) {
-      this._wrapper.style[key] = value;
-    }
     this._ar = ar;
     this._renderingLibrary = renderingLibrary;
     this._quality = quality;
     this._wrapperColor = wrapperColor;
     this.registerComponents(camera, renderer);
+    this._container = document.createElement("div");
+    this._container.setAttribute("id", "fixar-container");
+    for (const [key, value] of Object.entries(FIXAR_STYLES.container)) {
+      this._container.style[key] = value;
+    }
+    this._wrapper = document.createElement("div");
+    this._wrapper.setAttribute("id", "fixar-wrapper");
+    for (const [key, value] of Object.entries(FIXAR_STYLES.wrapper)) {
+      this._wrapper.style[key] = value;
+    }
+    this._wrapper.style.backgroundColor = this._wrapperColor;
+    this._container.appendChild(this._wrapper);
   }
   set camera(camera) {
     if (camera === null) {
@@ -103,6 +110,7 @@ class Viewport {
         case "THREE":
           if (renderer.constructor.name === LOADED_LIBS.THREE.WebGLRenderer.name) {
             this._renderer = renderer;
+            this._wrapper.appendChild(this._renderer.domElement);
           } else {
             throw new Error(`Please provide ${LOADED_LIBS.THREE.WebGLRenderer.name}, you provided ${renderer.constructor.name}`);
           }

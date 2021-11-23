@@ -1,21 +1,8 @@
-const DEBUG_SHOW_SUCCESS_MESSAGES = false;
+// Dev Configuration
+const DEV_MODE = true;
+const DEBUG_SHOW_SUCCESS_MESSAGES = DEV_MODE;
 
-// const FIXAR_STYLES_CSS = `
-//     div.fixar-wrapper {
-//         position: absolute;
-//         width: 100%;
-//         height: 100%;
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         background-color: #000;
-//     }
 
-//     canvas.fixar-viewport {
-//         display: block;
-//         background-color: #FFF;
-//     }
-// `;
 
 const FIXAR_STYLES = {
     "wrapper": {
@@ -24,10 +11,9 @@ const FIXAR_STYLES = {
         "height": "100%",
         "display": "flex",
         "alignItems": "center",
-        "justifyContent": "center",
-        "backgroundColor": "#000"
+        "justifyContent": "center"
     },
-    "viewport": {
+    "container": {
         "display": "block",
         "backgroundColor": "#FFF"
     }
@@ -35,16 +21,16 @@ const FIXAR_STYLES = {
 
 const LOADED_LIBS = {};
 const LIB_IDENTIFIERS = { // Supply a short name for each supported graphics library along with a unique class from that library used to identify it
-    "THREE": "Object3D", // Explaination: "Object3D" is one of the most common, deeply-rooted classes in Three.js, it will likely never be removed from the API
-    "PIXI": "ProjectionSystem", // Explaination: idk it just works for now ¯\_(ツ)_/¯ - HEY MAYBE USE APPLICATION! seems like a core part of their docs
+    "THREE": "Object3D", // Explanation: "Object3D" is one of the most common, deeply-rooted classes in Three.js, it will likely never be removed from the API
+    "PIXI": "ProjectionSystem", // Explanation: idk it just works for now ¯\_(ツ)_/¯ - HEY MAYBE USE APPLICATION! seems like a core part of their docs
     // What about Phaser CE?
-    "PHASER3": "Game", // They've really been pushing ES6 and NPM within the last few years but Skypack seems broken atm? :( Explaination: "Game" is THE most common class in Phaser3, it will likely never be removed from the API
-    "BABYLON": "PhysicsImpostor" // Explaination: Seemed pretty sus, not gonna lie
+    "PHASER3": "Game", // They've really been pushing ES6 and NPM within the last few years but Skypack seems broken atm? :( Explanation: "Game" is THE most common class in Phaser3, it will likely never be removed from the API
+    "BABYLON": "PhysicsImpostor" // Explanation: Seemed pretty sus, not gonna lie
     
     
     // ...
 };
-export const use = (...libs) => {
+export const use = (...libs) => { // Allows FIXAR to access graphics rendering libraries
     for (const lib of libs) {
         let supported = false;
         for (const [key, value] of Object.entries(LIB_IDENTIFIERS)) {
@@ -73,8 +59,8 @@ export class Viewport {
         camera = null,
         renderer = null
     }={}) {
-        renderingLibrary = renderingLibrary.trim().toUpperCase(); // trim/uppercase the rendering library string in case the user passed it in slightly incorrectly
-
+        // trim/uppercase the rendering library string in case the user passed it in slightly incorrectly
+        renderingLibrary = renderingLibrary.trim().toUpperCase();
         // Check if the rendering library type is supported
         if (!Object.keys(LIB_IDENTIFIERS).includes(renderingLibrary)) throw new Error(`Rendering library "${renderingLibrary}" is not supported`);
         // Check if the rendering library the user wants to use has been previously loaded using FIXAR.use()
@@ -87,17 +73,28 @@ export class Viewport {
         this._NEED_TO_RESIZE = true;
         this._INITIALIZED = false;
 
-        this._viewport = null; // TODO
-        this._wrapper = document.createElement("div");
-        for (const [key, value] of Object.entries(FIXAR_STYLES.wrapper)) {
-            this._wrapper.style[key] = value;
-        }
-
         this._ar = ar;
         this._renderingLibrary = renderingLibrary;
         this._quality = quality;
         this._wrapperColor = wrapperColor;
         this.registerComponents(camera, renderer);
+
+
+        
+        // Initialize main viewport components
+        this._container = document.createElement("div");
+        this._container.setAttribute("id", "fixar-container");
+        for (const [key, value] of Object.entries(FIXAR_STYLES.container)) {
+            this._container.style[key] = value;
+        }
+        this._wrapper = document.createElement("div");
+        this._wrapper.setAttribute("id", "fixar-wrapper");
+        for (const [key, value] of Object.entries(FIXAR_STYLES.wrapper)) {
+            this._wrapper.style[key] = value;
+        }
+        this._wrapper.style.backgroundColor = this._wrapperColor;
+
+        this._container.appendChild(this._wrapper);
     }
 
     registerComponents = (camera, renderer)=>{
@@ -131,6 +128,7 @@ export class Viewport {
             case "THREE":
                 if (renderer.constructor.name === LOADED_LIBS.THREE.WebGLRenderer.name) {
                     this._renderer = renderer;
+                    this._wrapper.appendChild(this._renderer.domElement); // kinda questioning position absolute for wrapper...
                 } else {
                     throw new Error(`Please provide ${LOADED_LIBS.THREE.WebGLRenderer.name}, you provided ${renderer.constructor.name}`);
                 }
