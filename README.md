@@ -2,7 +2,7 @@
 
 **FixAR** **Fix**es your **A**spect **R**atio.
 
-![](/repo-assets/img/fixar-logo-hires.png)
+![](/repo-assets/icons/fixar-logo-hires.png)
 
 ![GitHub](https://img.shields.io/badge/Supported%3A-Three.js-brightgreen)
 ![GitHub](https://img.shields.io/badge/Currently%20Unsupported:-Babylon.js,%20PixiJS,%20Phaser%203/4,%20and%20several%20other%20libraries-red)

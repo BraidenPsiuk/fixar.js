@@ -2,7 +2,7 @@
 
 > **FixAR** **Fix**es your **A**spect **R**atio.
 
-![](/repo-assets/img/fixar-logo-hires.png)
+![](/repo-assets/icons/fixar-logo-hires.png)
 
 ![GitHub](https://img.shields.io/badge/Supported%3A-Three.js-brightgreen)
 ![GitHub](https://img.shields.io/badge/Currently%20Unsupported:-Babylon.js,%20PixiJS,%20Phaser%203/4,%20and%20several%20other%20libraries-red)
@@ -11,6 +11,8 @@
 ![ES file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/build/fixar.es.js?label=es%20size)
 ![UMD file size in bytes](https://img.shields.io/github/size/BraidenPsiuk/fixar.js/build/fixar.umd.js?label=umd%20size)
 ![GitHub](https://img.shields.io/github/license/BraidenPsiuk/fixar.js)
+
+![](/repo-assets/examples/fixar-basic-example.gif)
 
 ## NOTE: FIXAR IS STILL IN THE VERY EARLY STAGES OF DEVELOPMENT. It is currently in version 0.x.x (NPM) and is unusable in its current state.
 
