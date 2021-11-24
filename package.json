@@ -1,6 +1,6 @@
 {
   "name": "fixar",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "JavaScript rendering tools library. Designed for use with Three.js.",
   "module": "./build/fixar.es.js",
   "main": "./build/fixar.umd.js",
