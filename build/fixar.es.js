@@ -6,7 +6,6 @@ var __publicField = (obj, key, value) => {
 };
 const FIXAR_STYLES = {
   "wrapper": {
-    "position": "absolute",
     "width": "100%",
     "height": "100%",
     "display": "flex",
@@ -15,6 +14,8 @@ const FIXAR_STYLES = {
   },
   "container": {
     "display": "block",
+    "width": "100%",
+    "height": "100%",
     "backgroundColor": "#FFF"
   }
 };
@@ -55,6 +56,21 @@ class Viewport {
     __publicField(this, "registerComponents", (camera, renderer) => {
       this.camera = camera;
       this.renderer = renderer;
+    });
+    __publicField(this, "resize", () => {
+      if (this._camera === null || this._renderer === null)
+        throw new Error("(TODO FIX THIS ERROR MESSAGE) Both Camera and Renderer must be available first");
+      console.log("run");
+      const width = this._wrapper.children[0].width, height = this._wrapper.children[0].height;
+      let newWidth = this._wrapper.clientWidth, newHeight = this._wrapper.clientHeight;
+      newWidth = newWidth > newHeight * this._ar ? newHeight * this._ar : newWidth;
+      newHeight = newWidth <= newHeight * this._ar ? newWidth / this._ar : newHeight;
+      this._renderer.setPixelRatio(window.devicePixelRatio / this._quality);
+      if (width != newWidth || height != newHeight) {
+        this._camera.aspect = newWidth / newHeight;
+        this._camera.updateProjectionMatrix();
+        this._renderer.setSize(newWidth, newHeight);
+      }
     });
     renderingLibrary = renderingLibrary.trim().toUpperCase();
     if (!Object.keys(LIB_IDENTIFIERS).includes(renderingLibrary))
@@ -120,6 +136,15 @@ class Viewport {
   }
   get renderer() {
     return this._renderer;
+  }
+  set quality(quality) {
+    this._quality = quality;
+  }
+  get quality() {
+    return this._quality;
+  }
+  get domElement() {
+    return this._container;
   }
 }
 export { Viewport, use };

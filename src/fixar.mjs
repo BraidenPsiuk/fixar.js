@@ -6,7 +6,7 @@ const DEBUG_SHOW_SUCCESS_MESSAGES = DEV_MODE;
 
 const FIXAR_STYLES = {
     "wrapper": {
-        "position": "absolute",
+        // "position": "absolute",
         "width": "100%",
         "height": "100%",
         "display": "flex",
@@ -15,6 +15,8 @@ const FIXAR_STYLES = {
     },
     "container": {
         "display": "block",
+        "width": "100%",
+        "height": "100%",
         "backgroundColor": "#FFF"
     }
 };
@@ -26,8 +28,8 @@ const LIB_IDENTIFIERS = { // Supply a short name for each supported graphics lib
     // What about Phaser CE?
     "PHASER3": "Game", // They've really been pushing ES6 and NPM within the last few years but Skypack seems broken atm? :( Explanation: "Game" is THE most common class in Phaser3, it will likely never be removed from the API
     "BABYLON": "PhysicsImpostor" // Explanation: Seemed pretty sus, not gonna lie
-    
-    
+
+
     // ...
 };
 export const use = (...libs) => { // Allows FIXAR to access graphics rendering libraries
@@ -52,13 +54,13 @@ export const use = (...libs) => { // Allows FIXAR to access graphics rendering l
 
 export class Viewport {
     constructor({
-        ar = 16/9,
+        ar = 16 / 9,
         renderingLibrary = "THREE",
         quality = 1,
         wrapperColor = `#000000`,
         camera = null,
         renderer = null
-    }={}) {
+    } = {}) {
         // trim/uppercase the rendering library string in case the user passed it in slightly incorrectly
         renderingLibrary = renderingLibrary.trim().toUpperCase();
         // Check if the rendering library type is supported
@@ -80,7 +82,7 @@ export class Viewport {
         this.registerComponents(camera, renderer);
 
 
-        
+
         // Initialize main viewport components
         this._container = document.createElement("div");
         this._container.setAttribute("id", "fixar-container");
@@ -97,11 +99,26 @@ export class Viewport {
         this._container.appendChild(this._wrapper);
     }
 
-    registerComponents = (camera, renderer)=>{
+    registerComponents = (camera, renderer) => {
         this.camera = camera;
         this.renderer = renderer;
     }
-    
+
+    resize = () => {
+        if (this._camera === null || this._renderer === null) throw new Error("(TODO FIX THIS ERROR MESSAGE) Both Camera and Renderer must be available first");
+        console.log("run");
+        const width = this._wrapper.children[0].width, height = this._wrapper.children[0].height;
+        let newWidth = this._wrapper.clientWidth, newHeight = this._wrapper.clientHeight;
+        newWidth = (newWidth > newHeight * this._ar) ? newHeight * this._ar : newWidth;
+        newHeight = (newWidth <= newHeight * this._ar) ? newWidth / this._ar : newHeight;
+        this._renderer.setPixelRatio(window.devicePixelRatio / this._quality);
+        if (width != newWidth || height != newHeight) {
+            this._camera.aspect = newWidth / newHeight;
+            this._camera.updateProjectionMatrix();
+            this._renderer.setSize(newWidth, newHeight);
+        }
+    }
+
     set camera(camera) {
         if (camera === null) {
             this._camera = null;
@@ -124,19 +141,29 @@ export class Viewport {
         if (renderer === null) {
             this._renderer = null;
         } else {
-        switch (this._renderingLibrary) {
-            case "THREE":
-                if (renderer.constructor.name === LOADED_LIBS.THREE.WebGLRenderer.name) {
-                    this._renderer = renderer;
-                    this._wrapper.appendChild(this._renderer.domElement); // kinda questioning position absolute for wrapper...
-                } else {
-                    throw new Error(`Please provide ${LOADED_LIBS.THREE.WebGLRenderer.name}, you provided ${renderer.constructor.name}`);
-                }
-                break;
+            switch (this._renderingLibrary) {
+                case "THREE":
+                    if (renderer.constructor.name === LOADED_LIBS.THREE.WebGLRenderer.name) {
+                        this._renderer = renderer;
+                        this._wrapper.appendChild(this._renderer.domElement); // kinda questioning position absolute for wrapper...
+                    } else {
+                        throw new Error(`Please provide ${LOADED_LIBS.THREE.WebGLRenderer.name}, you provided ${renderer.constructor.name}`);
+                    }
+                    break;
+            }
         }
-    }
     } get renderer() {
         return this._renderer;
+    }
+
+    set quality(quality) {
+        this._quality = quality;
+    } get quality() {
+        return this._quality;
+    }
+
+    get domElement() {
+        return this._container;
     }
 };
 
