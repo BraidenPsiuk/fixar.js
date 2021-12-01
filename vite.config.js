@@ -9,18 +9,15 @@ module.exports = defineConfig({
             entry: path.resolve(__dirname, 'src/fixar.mjs'),
             name: 'FIXAR',
             fileName: (format) => `fixar.${format}.js`
-        },
-        rollupOptions: {
-            // make sure to externalize deps that shouldn't be bundled
-            // into your library
-            //   external: ['vue'],
-            //   output: {
-            //     // Provide global variables to use in the UMD build
-            //     // for externalized deps
-            //     globals: {
-            //       vue: 'Vue'
-            //     }
-            //   }
         }
     }
 })
+
+//
+// Reasons for not providing any rollupOptions:
+//     Externalizing: I don't think we have anything to externalize since we have no deps, only dev-deps
+//     Output globals: Look into possible benefits of adding these, but for now I don't think it's necessary
+//
+// Reason for choosing "build" as the distribution directory:
+//     I wanted to follow the Three.js repo structure
+//
