@@ -1,7 +1,7 @@
 {
   "name": "fixar",
   "version": "0.2.2",
-  "description": "JavaScript rendering tools library. Designed for use with Three.js.",
+  "description": "JavaScript rendering tools library. Use it with your favorite 2D/3D engines!",
   "module": "./build/fixar.es.js",
   "main": "./build/fixar.umd.js",
   "files": [
@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "postbuild": "node ./npm-scripts/post-build.mjs"
   },
   "repository": {
     "type": "git",
@@ -24,15 +25,20 @@
   "keywords": [
     "three",
     "three.js",
+    "pixijs",
+    "pixi.js",
+    "babylon",
+    "babylon.js",
+    "phaser",
     "fixar",
     "fixar.js",
     "javascript",
+    "2d",
     "3d",
     "virtual-reality",
     "augmented-reality",
     "webgl",
     "webgl2",
-    "webxr",
     "canvas",
     "svg",
     "html5",
@@ -47,6 +53,7 @@
   },
   "homepage": "https://github.com/BraidenPsiuk/fixar.js#readme",
   "devDependencies": {
+    "node-html-parser": "^5.1.0",
     "vite": "^2.6.14"
   }
 }
