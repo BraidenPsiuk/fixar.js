@@ -6,13 +6,9 @@ FIXAR gives you full control over how your 2D/3D scene is viewed. It automatical
 
 ## Understanding FIXAR's dependency model
 
-If you take a look at NPM, FIXAR does not have any listed dependencies. However, it won't do anything on it's own! Although this may be a little confusing, the dependency model offered by NPM doesn't seem to be sufficient for this library's needs.
+If you take a look at NPM, fixar.js currently only has one listed dependency, Three.js (fixar.js was designed to provide additional tools for Three.js scenes, therefore Three.js is listed as a required dependancy in the package.json). However, it won't do anything on it's own! Although this may be a little confusing, the dependency model offered by NPM doesn't seem to be sufficient for this library's needs.
 
-FIXAR requires *at least* one graphics rendering library of your choice to work. I originally only designed it to work with Three.js, and that was it. In that original version, Three.js would have been made a dependancy. However, I realized that FIXAR might become more popular if multiple libraries were supported instead of just Three.js.
-
-**Your take-away should simply be this:** There are no listed dependencies, but FIXAR needs **at least one** library to work. Include one of more libraries in your project, and then simply call ```FIXAR.use(lib1, lib2, lib3, etc...);``` to allow FIXAR access to them. You don't need to do anything to specify the library name(s), FIXAR figures that out for you, and will **scream scarry red errors** at you if it has any trouble.
-
-*Just kidding, I tried to make the errors as readible as possible. If you get an error and you're not sure what it means, don't be afraid to open an issue on Github!*
+<!-- **Your take-away should simply be this:** There are no listed dependencies, but FIXAR needs **at least one** library to work. Include one of more libraries in your project, and then simply call ```FIXAR.use(lib1, lib2, lib3, etc...);``` to allow FIXAR access to them. You don't need to do anything to specify the library name(s), FIXAR figures that out for you, but will provide detailed error information if it has any trouble. I tried to make the errors as readible as possible, but if you get an error and you're not sure what it means, don't be afraid to open an issue on Github! -->
 
 ### Usage (Codepen)
 

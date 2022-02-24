@@ -21,7 +21,7 @@ ___
 
 ## What is fixar.js?
 
-FixAR provides you with tools that allow you more control over your Three.js scenes. FixAR got it's name from it's main feature - it automatically resizes your scene to make it as large as possible while maintaining an aspect ratio **YOU** define (and can change at any time). It does this by creating a letterboxing/pillarboxing effect around your canvas, which avoids stretching or cropping (which can look ugly or cause a loss of detail, respectively).
+FixAR provides you with tools that allow you more control over your Three.js scenes. FixAR got it's name from it's main feature - Fixing your Aspect Ratio. It automatically resizes your scene to make it as large as possible while maintaining an aspect ratio you define (and can change at any time). It does this by creating a letterboxing/pillarboxing effect around your canvas, which avoids stretching or cropping (which can look ugly or cause a loss of detail, respectively).
 
 **A note from the developer:** FixAR's development started when I aimed to create a helper script/library to maintain aspect ratio in single Three.js scene. It was intended to work well when used in an Electron application. However, I then decided I wanted to support several libraries besides Three.js, including Babylon.js, Pixi.js, Phaser, and more. Unfortunately, supporting multiple libraries seemed to be too much for me as a single developer, so I've recently decided to focus support just on Three.js. This decision, although somewhat unfortunate, has allowed me to focus on adding some cool tools to help design Three.js scenes.
 ___
