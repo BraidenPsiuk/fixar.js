@@ -1,3 +1,9 @@
+# THIS PROJECT IS CURRENTLY ARCHIVED
+
+Unfortunatly, I am archiving Fixar.js until further notice to give myself more time to work on other projects.
+
+I will continue working on it if requested, or once I have more of a need for it myself.
+
 # fixar.js (Github)
 
 > **FixAR** **Fix**es your **A**spect **R**atio.
@@ -15,6 +21,8 @@
 ![](/files/examples/fixar-basic-example.gif)
 
 ## NOTE: FIXAR IS STILL IN THE VERY EARLY STAGES OF DEVELOPMENT. It is currently in version 0.x.x (NPM) and is unusable in its current state.
+
+<!-- FULL DOCUMENT OPEN
 
 This library currently has a few limitations due to it being in early stages of development:
 1. You can only really create 1 Viewport, and it must be appended to the document body. I am planning to use flexbox to make multiple viewports easy to achieve. It currently works like this because I only intended for this to run in an Electron app when I started developing this.
@@ -52,9 +60,11 @@ ___
 
 The aim of the project is to create an easy to use, lightweight JavaScript library that pairs nicely with other libraries that render to a canvas, such as Mr. Doob's Three.js.
 
-<!-- I've always dreamed of making 3D visualizations and games in JavaScript. Three.js provides the means to do these things in a graspable way, but I've found that browser window resizes can be difficult to develop around. Users can resize their window at any time, which can introduce problems if you intended for your scene to be viewed at a specific aspect ratio. -->
+-->
 
-By automatically setting up letterboxing/pillarboxing, you no longer have to worry about handling window resizes or users getting a peek at things in your scene they're not intended to see by resizing the window.
+<!-- I've always dreamed of making 3D visualizations and games in JavaScript. Three.js provides the means to do these things in a graspable way, but I've found that browser window resizes can be difficult to develop around. Users can resize their window at any time, which can introduce problems if you intended for your scene to be viewed at a specific aspect ratio.
+
+By automatically setting up letterboxing/pillarboxing, you no longer have to worry about handling window resizes or users getting a peek at things in your scene they're not intended to see by resizing the window.-->
 
 
 <!-- ## Usage
@@ -67,6 +77,8 @@ We can have 2 import methods:
 ```sh
 npm i fixar
 ``` -->
+
+<!--
 
 ## Yeah, yeah... I know the drill. Let's make a cube already!
 You don't *have* to make it green, I guess... But you should totally make it green.
@@ -81,3 +93,5 @@ import * as FIXAR from "https://unpkg.com/fixar@latest/fixar.js";
 // In the meantime, check out examples/basic-browser if you want to get an idea of how this library should work.
 ```
 > Oh yeah, almost forgot. Make sure to run the above code as a [module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules). Otherwise, you won't be able to use `import` statements!
+
+FULL DOCUMENT CLOSE -->
